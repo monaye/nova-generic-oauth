@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Monaye\NovaOathFreee\Controllers\OathApiController;
+use Monaye\NovaGenericOauth\Controllers\OathApiController;
 
 /*
 |--------------------------------------------------------------------------

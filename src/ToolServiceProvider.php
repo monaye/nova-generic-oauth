@@ -9,6 +9,10 @@ use Laravel\Nova\Nova;
 
 class ToolServiceProvider extends ServiceProvider
 {
+
+    public static $slug = 'nova-generic-oauth';
+    public static $path = 'nova_generic_oauth';
+
     /**
      * Bootstrap any application services.
      *
@@ -20,9 +24,16 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', self::$path);
+
+        $this->publishes([
+            __DIR__ . '/../config/' . self::$slug . '.php' => config_path(self::$slug . '.php'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/' . self::$path),
+        ]);
+
         Nova::serving(function (ServingNova $event) {
-            Nova::script('nova-generic-oauth', __DIR__.'/../dist/js/tool.js');
-            Nova::style('nova-generic-oauth', __DIR__.'/../dist/css/tool.css');
+            Nova::script('nova-generic-oauth', __DIR__ . '/../dist/js/tool.js');
+            Nova::style('nova-generic-oauth', __DIR__ . '/../dist/css/tool.css');
         });
     }
 
@@ -38,8 +49,8 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova'])
-                ->prefix('nova-vendor/nova-generic-oauth')
-                ->group(__DIR__.'/../routes/api.php');
+            ->prefix('nova-vendor/' . self::$slug)
+            ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**
@@ -50,5 +61,9 @@ class ToolServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/' . self::$slug . '.php',
+            self::$slug
+        );
     }
 }
