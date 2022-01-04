@@ -4,20 +4,16 @@ namespace Monaye\NovaGenericOauth;
 
 use Laravel\Nova\ResourceTool;
 use Monaye\NovaGenericOauth\ToolServiceProvider;
-use League\OAuth2\Client\Provider\GenericProvider;
+// use League\OAuth2\Client\Provider\GenericProvider;
 
 class NovaGenericOauth extends ResourceTool
 {
-
-    public $slug;
 
     public function __construct(String $slug)
     {
         parent::__construct();
 
-        $this->slug = $slug;
-
-        $provider = new GenericProvider([
+        $provider = new \League\OAuth2\Client\Provider\GenericProvider([
             'clientId'                =>  config(ToolServiceProvider::$slug . '.' . $slug . '.clientId'),    // The client ID assigned to you by the provider
             'clientSecret'            =>  config(ToolServiceProvider::$slug . '.' . $slug . '.clientSecret'),    // The client password assigned to you by the provider
             'urlAuthorize'            => config(ToolServiceProvider::$slug . '.' . $slug . '.urlAuthorize'),
@@ -27,6 +23,7 @@ class NovaGenericOauth extends ResourceTool
         ]);
 
         $this->withMeta([
+            'oath_results' => auth()->user()->currentTeam->settings['oath'] ? auth()->user()->currentTeam->settings['oath'][$slug] : null,
             'web_oath_url' => $provider->getAuthorizationUrl(),
         ]);
     }

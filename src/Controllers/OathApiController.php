@@ -6,20 +6,20 @@ use Illuminate\Http\Request;
 use Monaye\NovaGenericOauth\ToolServiceProvider;
 use League\OAuth2\Client\Provider\GenericProvider;
 
+
 class OathApiController
 {
 
     public function handleApiCallBack(Request $request)
     {
 
-
         $provider = new GenericProvider([
-            'clientId'                =>  config('freee-oath.' . $request->slug . '.clientId'),    // The client ID assigned to you by the provider
-            'clientSecret'            =>  config('freee-oath.' . $request->slug . '.clientSecret'),    // The client password assigned to you by the provider
-            'urlAuthorize'            => config('freee-oath.' . $request->slug . '.urlAuthorize'),
-            'urlAccessToken'          => config('freee-oath.' . $request->slug . '.urlAccessToken'),
-            'urlResourceOwnerDetails'          => config('freee-oath.' . $request->slug . '.urlResourceOwnerDetails'),
-            'redirectUri' => config('freee-oath.' . $request->slug . '.redirectUri')
+            'clientId'                =>  config(ToolServiceProvider::$slug . '.' . $request->slug . '.clientId'),    // The client ID assigned to you by the provider
+            'clientSecret'            =>  config(ToolServiceProvider::$slug . '.' . $request->slug . '.clientSecret'),    // The client password assigned to you by the provider
+            'urlAuthorize'            => config(ToolServiceProvider::$slug . '.' . $request->slug . '.urlAuthorize'),
+            'urlAccessToken'          => config(ToolServiceProvider::$slug . '.' . $request->slug . '.urlAccessToken'),
+            'urlResourceOwnerDetails' => config(ToolServiceProvider::$slug . '.' . $request->slug . '.urlResourceOwnerDetails'),
+            'redirectUri' => config(ToolServiceProvider::$slug . '.' . $request->slug . '.redirectUri')
         ]);
 
 

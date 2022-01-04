@@ -245,12 +245,118 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['resourceName', 'resourceId', 'panel'],
+  props: ["resourceName", "resourceId", "panel"],
 
   mounted: function mounted() {
     //
+  },
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+
+  computed: {
+    webOathUrl: function webOathUrl() {
+      return this.panel.fields[0].web_oath_url;
+    },
+    oathResults: function oathResults() {
+      return this.panel.fields[0].oath_results;
+    }
+  },
+  methods: {
+    onSubmitForm: function onSubmitForm() {
+      alert("on submit form");
+    }
   }
 });
 
@@ -262,9 +368,119 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Nova Generic Oauth")])
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "md:grid md:grid-cols-3 md:gap-6" },
+      [
+        _c("div", { staticClass: "md:col-span-1 flex justify-between" }, [
+          _c("div", { staticClass: "px-4 sm:px-0" }, [
+            _c("h3", { staticClass: "text-lg font-medium text-gray-900" }, [
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.__("FreeeとAPI連携設定")) +
+                  "\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mt-1 text-sm text-gray-600" }, [
+              _vm._v(
+                '\n          "Freeeとの連携を設定"をクリックしてFreeeへのAPI許可を行うことで、顧客情報をFreeeへ連携することが出来ます。行政侍からFreeeへの連携のみですので、Freeeで作られた取引先は行政侍には作られませんのでご注意ください。\n        '
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-4 sm:px-0" })
+        ]),
+        _vm._v(" "),
+        _c(
+          "loading-card",
+          { staticClass: "md:col-span-2", attrs: { loading: _vm.loading } },
+          [
+            _c("div", { staticClass: "mt-5 md:mt-0 md:col-span-2" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "\n            px-4\n            py-5\n            bg-white\n            sm:p-6\n            shadow\n            sm:rounded-tl-md sm:rounded-tr-md\n          "
+                },
+                [
+                  _c("div", { staticClass: "grid grid-cols-6 gap-6" }, [
+                    _c("div", { staticClass: "col-span-6 sm:col-span-4" }, [
+                      !_vm.oathResults
+                        ? _c("p", [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.__("Freeeとの連携は未設定です。")) +
+                                "\n              "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.oathResults
+                        ? _c("p", [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  _vm.__(
+                                    "Freeeとの連携設定済みです。顧客情報がFreeeへ連携されてない様でしたら、もう一度連携設定を行い、問題が解決しない様であればサポートまでお問い合わせください。"
+                                  )
+                                ) +
+                                "\n              "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "\n            flex\n            items-center\n            justify-end\n            px-4\n            py-3\n            bg-gray-50\n            text-right\n            sm:px-6\n            shadow\n            sm:rounded-bl-md sm:rounded-br-md\n          "
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "\n              inline-flex\n              items-center\n              px-4\n              py-2\n              bg-gray-800\n              border border-transparent\n              rounded-md\n              font-semibold\n              text-xs text-white\n              uppercase\n              tracking-widest\n              hover:bg-gray-700\n              active:bg-gray-900\n              focus:outline-none\n              focus:border-gray-900\n              focus:ring\n              focus:ring-gray-300\n              transition\n            ",
+                      attrs: { href: _vm.webOathUrl }
+                    },
+                    [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(_vm.__("Freeeとの連携を設定")) +
+                          "\n          "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hidden sm:block" }, [
+      _c("div", { staticClass: "py-8" }, [
+        _c("div", { staticClass: "border-t border-gray-200" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
