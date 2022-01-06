@@ -3,6 +3,7 @@
 namespace Monaye\NovaGenericOauth\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\Freee\Client;
 use Monaye\NovaGenericOauth\ToolServiceProvider;
 use League\OAuth2\Client\Provider\GenericProvider;
 
@@ -28,19 +29,17 @@ class OathApiController
         ]);
 
         $team = $request->user()->currentTeam;
-
-        $team->settings = $team->settings ?? [];
-        $team->settings['oath'] = $team->settings['oath'] ?? [];
-        $team->settings['oath'][$request->slug] = $team->settings['oath'][$request->slug] ?? [];
-
-        $team->settings['oath'][$request->slug]['access_token'] = $accessToken->getToken();
-        $team->settings['oath'][$request->slug]['refresh_token'] = $accessToken->getRefreshToken();
-        $team->settings['oath'][$request->slug]['expires_in'] = $accessToken->getExpires();
-
+        $team->setFreeeOauthTokenInfo($request->slug, $accessToken);
         $team->save();
 
-        return package_view(ToolServiceProvider::$path, 'oath_successful', [
-            'slug' => $request->slug
+        $freeeClient = new Client();
+        $companies = $freeeClient->getCompanies();
+
+
+        return package_view(ToolServiceProvider::$path, 'oauth_successful', [
+            'teamId' => $team->id,
+            'slug' => $request->slug,
+            'companies' => $companies,
         ]);
     }
 }

@@ -346,11 +346,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: {
-    webOathUrl: function webOathUrl() {
-      return this.panel.fields[0].web_oath_url;
+    webOauthUrl: function webOauthUrl() {
+      return this.panel.fields[0].web_oauth_url;
     },
-    oathResults: function oathResults() {
-      return this.panel.fields[0].oath_results;
+    oauthResults: function oauthResults() {
+      return this.panel.fields[0].oauth_results;
     }
   },
   methods: {
@@ -407,7 +407,7 @@ var render = function() {
                 [
                   _c("div", { staticClass: "grid grid-cols-6 gap-6" }, [
                     _c("div", { staticClass: "col-span-6 sm:col-span-4" }, [
-                      !_vm.oathResults
+                      !_vm.oauthResults
                         ? _c("p", [
                             _vm._v(
                               "\n                " +
@@ -417,7 +417,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.oathResults
+                      _vm.oauthResults
                         ? _c("p", [
                             _vm._v(
                               "\n                " +
@@ -447,7 +447,7 @@ var render = function() {
                     {
                       staticClass:
                         "\n              inline-flex\n              items-center\n              px-4\n              py-2\n              bg-gray-800\n              border border-transparent\n              rounded-md\n              font-semibold\n              text-xs text-white\n              uppercase\n              tracking-widest\n              hover:bg-gray-700\n              active:bg-gray-900\n              focus:outline-none\n              focus:border-gray-900\n              focus:ring\n              focus:ring-gray-300\n              transition\n            ",
-                      attrs: { href: _vm.webOathUrl }
+                      attrs: { href: _vm.webOauthUrl }
                     },
                     [
                       _vm._v(

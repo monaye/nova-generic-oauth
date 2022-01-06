@@ -27,10 +27,10 @@
             <div class="grid grid-cols-6 gap-6">
               <!-- currentPassword -->
               <div class="col-span-6 sm:col-span-4">
-                <p v-if="!oathResults">
+                <p v-if="!oauthResults">
                   {{ __("Freeeとの連携は未設定です。") }}
                 </p>
-                <p v-if="oathResults">
+                <p v-if="oauthResults">
                   {{
                     __(
                       "Freeeとの連携設定済みです。顧客情報がFreeeへ連携されてない様でしたら、もう一度連携設定を行い、問題が解決しない様であればサポートまでお問い合わせください。"
@@ -55,7 +55,7 @@
             "
           >
             <a
-              :href="webOathUrl"
+              :href="webOauthUrl"
               class="
                 inline-flex
                 items-center
@@ -103,11 +103,11 @@ export default {
     };
   },
   computed: {
-    webOathUrl() {
-      return this.panel.fields[0].web_oath_url;
+    webOauthUrl() {
+      return this.panel.fields[0].web_oauth_url;
     },
-    oathResults() {
-      return this.panel.fields[0].oath_results;
+    oauthResults() {
+      return this.panel.fields[0].oauth_results;
     },
   },
   methods: {

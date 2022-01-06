@@ -22,9 +22,11 @@ class NovaGenericOauth extends ResourceTool
             'redirectUri' => config(ToolServiceProvider::$slug . '.' . $slug . '.redirectUri')
         ]);
 
+        // dd($provider->getAuthorizationUrl());
+
         $this->withMeta([
-            'oath_results' => auth()->user()->currentTeam->settings['oath'] ? auth()->user()->currentTeam->settings['oath'][$slug] : null,
-            'web_oath_url' => $provider->getAuthorizationUrl(),
+            'oauth_results' => auth()->user()->currentTeam->settings && auth()->user()->currentTeam->settings['oauth'] ? auth()->user()->currentTeam->settings['oauth'][$slug] : null,
+            'web_oauth_url' => $provider->getAuthorizationUrl(),
         ]);
     }
 
